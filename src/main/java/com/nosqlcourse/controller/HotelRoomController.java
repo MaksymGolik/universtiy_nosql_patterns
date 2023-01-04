@@ -5,6 +5,7 @@ import com.nosqlcourse.dao.TypeDAO;
 import com.nosqlcourse.dto.RoomTypeCreateRequest;
 import com.nosqlcourse.exception.DataNotFoundException;
 import com.nosqlcourse.model.HotelRoom;
+import com.nosqlcourse.observer.RoomNotificationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -17,6 +18,7 @@ import java.util.List;
 public class HotelRoomController {
 
     private final DAOFactory dao = DAOFactory.getDAOInstance(TypeDAO.MONGO);
+    private final RoomNotificationService notificationService = new RoomNotificationService(dao);
 
     @GetMapping("/rooms")
     List<HotelRoom> getHotelRoomCatalog() throws DataNotFoundException {
@@ -53,6 +55,7 @@ public class HotelRoomController {
     @PostMapping("/add_roomtype")
     ResponseEntity<?> createRoomType(@RequestBody RoomTypeCreateRequest roomTypeCreateRequest){
         dao.getHotelRoomDAO().insertRoomType(RoomTypeCreateRequest.toRoomType(roomTypeCreateRequest));
+        notificationService.notify("in hotel appears new room type ["+roomTypeCreateRequest.getDescription()+"]");
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/rooms").buildAndExpand().toUri();
 
