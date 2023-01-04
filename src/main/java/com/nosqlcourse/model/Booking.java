@@ -29,72 +29,81 @@ public class Booking {
         return id;
     }
 
-    public void setId(Long id) {
+    public Booking id(Long id) {
         this.id = id;
+        return this;
     }
 
     public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public Booking userId(Long userId) {
         this.userId = userId;
+        return this;
     }
 
     public BookingStatus getStatus() {
         return status;
     }
 
-    public void setStatus(BookingStatus status) {
+    public Booking status(BookingStatus status) {
         this.status = status;
+        return this;
     }
 
     public String getGuestSurname() {
         return guestSurname;
     }
 
-    public void setGuestSurname(String guestSurname) {
+    public Booking guestSurname(String guestSurname) {
         this.guestSurname = guestSurname;
+        return this;
     }
 
     public String getGuestName() {
         return guestName;
     }
 
-    public void setGuestName(String guestName) {
+    public Booking guestName(String guestName) {
         this.guestName = guestName;
+        return this;
     }
 
     public String getGuestPhoneNumber() {
         return guestPhoneNumber;
     }
 
-    public void setGuestPhoneNumber(String guestPhoneNumber) {
+    public Booking guestPhoneNumber(String guestPhoneNumber) {
         this.guestPhoneNumber = guestPhoneNumber;
+        return this;
     }
 
     public double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public Booking price(double price) {
         this.price = price;
+        return this;
     }
 
     public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public Booking createTime(Timestamp createTime) {
         this.createTime = createTime;
+        return this;
     }
 
     public Timestamp getLastUpdateTime() {
         return lastUpdateTime;
     }
 
-    public void setLastUpdateTime(Timestamp lastUpdateTime) {
+    public Booking lastUpdateTime(Timestamp lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
+        return this;
     }
 
     @Override

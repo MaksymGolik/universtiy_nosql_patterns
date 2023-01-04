@@ -41,21 +41,20 @@ public class MySQLBookingDAOImpl implements IBookingDAO {
     private static final String DELETE_BOOKING_BY_ID = "DELETE FROM booking WHERE id = ?";
 
     private Booking extractBooking(ResultSet resultSet) throws SQLException {
-        Booking booking = new Booking();
-        booking.setId(resultSet.getLong(1));
-        booking.setGuestSurname(resultSet.getString(2));
-        booking.setGuestName(resultSet.getString(3));
-        booking.setGuestPhoneNumber(resultSet.getString(4));
-        booking.setPrice(resultSet.getDouble(5));
-        booking.setCreateTime(Timestamp.valueOf(resultSet.getString(6)));
-        booking.setLastUpdateTime(Timestamp.valueOf(resultSet.getString(7)));
-        booking.setUserId(resultSet.getLong(8));
         BookingStatus status = new BookingStatus();
         status.setId(resultSet.getLong(9));
         status.setName(resultSet.getString(10));
         status.setDescription(resultSet.getString(11));
-        booking.setStatus(status);
-        return booking;
+        return new Booking()
+                .id(resultSet.getLong(1))
+                .guestSurname(resultSet.getString(2))
+                .guestName(resultSet.getString(3))
+                .guestPhoneNumber(resultSet.getString(4))
+                .price(resultSet.getDouble(5))
+                .createTime(Timestamp.valueOf(resultSet.getString(6)))
+                .lastUpdateTime(Timestamp.valueOf(resultSet.getString(7)))
+                .userId(resultSet.getLong(8))
+                .status(status);
     }
 
     private BookingItem extractBookingItem(ResultSet resultSet) throws SQLException {
