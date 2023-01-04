@@ -22,11 +22,10 @@ public class BookingCreateRequest {
     List<BookingItemCreateRequest> items;
 
     public static Booking toBooking(BookingCreateRequest bookingCreateRequest){
-        Booking booking = new Booking();
-        booking.setGuestName(bookingCreateRequest.getGuestName());
-        booking.setGuestSurname(bookingCreateRequest.getGuestSurname());
-        booking.setGuestPhoneNumber(bookingCreateRequest.getGuestPhoneNumber());
-        booking.setUserId(bookingCreateRequest.getUserId());
-        return booking;
+        return new Booking()
+                .guestName(bookingCreateRequest.getGuestName())
+                .guestSurname(bookingCreateRequest.getGuestSurname())
+                .guestPhoneNumber(bookingCreateRequest.getGuestPhoneNumber())
+                .userId(bookingCreateRequest.getUserId());
     }
 }

@@ -28,7 +28,7 @@ public class BookingController {
     @PostMapping("/create_booking")
     ResponseEntity<?> createBooking(@RequestBody BookingCreateRequest bookingCreateRequest) throws DataNotFoundException {
         Booking booking = BookingCreateRequest.toBooking(bookingCreateRequest);
-        booking.setStatus(dao.getBookingDAO().getStatus("CREATED"));
+        booking = booking.status(dao.getBookingDAO().getStatus("CREATED"));
         List<BookingItem> bookingItems = new ArrayList<>();
         bookingCreateRequest.getItems().forEach(item->bookingItems.add(BookingItemCreateRequest.toBookingItem(item)));
         Long bookingId = dao.getBookingDAO().createBooking(booking,bookingItems);
