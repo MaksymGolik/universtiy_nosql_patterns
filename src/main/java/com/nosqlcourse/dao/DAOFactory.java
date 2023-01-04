@@ -10,10 +10,10 @@ public abstract class DAOFactory {
 
     public static synchronized DAOFactory getDAOInstance(TypeDAO typeDAO){
         if(instance == null){
-            switch (typeDAO){
-                case MYSQL: instance =  new MySQLDAOFactory(); break;
-                case MONGO: instance = new MongoDbDAOFactory(); break;
-                default: throw new IllegalStateException("Database not supported");
+            switch (typeDAO) {
+                case MYSQL -> instance = new MySQLDAOFactory();
+                case MONGO -> instance = new MongoDbDAOFactory();
+                default -> throw new IllegalStateException("Database not supported");
             }
         }
         return instance;
