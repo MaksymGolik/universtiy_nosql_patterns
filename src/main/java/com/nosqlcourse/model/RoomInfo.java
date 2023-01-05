@@ -5,7 +5,7 @@ import com.nosqlcourse.model.memento.RoomInfoMemento;
 
 import java.util.Objects;
 
-public class RoomInfo {
+public class RoomInfo implements Cloneable {
     @SerializedName("_id")
 
     private Long id;
@@ -92,5 +92,21 @@ public class RoomInfo {
         this.price = memento.getPrice();
         this.description = memento.getDescription();
         this.imageUrl = memento.getImageUrl();
+    }
+
+    @Override
+    public RoomInfo clone() {
+        try {
+            RoomInfo clone = (RoomInfo) super.clone();
+            clone.setId(id);
+            clone.setType(type);
+            clone.setPrice(price);
+            clone.setCapacity(capacity);
+            clone.setDescription(description);
+            clone.setImageUrl(imageUrl);
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }

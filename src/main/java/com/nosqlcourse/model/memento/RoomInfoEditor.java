@@ -3,42 +3,41 @@ package com.nosqlcourse.model.memento;
 import com.nosqlcourse.model.RoomInfo;
 import com.nosqlcourse.model.RoomType;
 
-import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Stack;
 
 public class RoomInfoEditor {
-    private Deque<RoomInfoMemento> history;
+    Stack<RoomInfoMemento> history;
     private RoomInfo originator;
 
     public RoomInfoEditor(RoomInfo originator){
-        history = new LinkedList<>();
+        history = new Stack<>();
         this.originator = originator;
-        history.add(originator.save());
     }
 
     public void setType(RoomType roomType){
-        originator.setType(roomType);
         history.add(originator.save());
+        originator.setType(roomType);
     }
 
     public void setCapacity(int capacity){
-        originator.setCapacity(capacity);
         history.add(originator.save());
+        originator.setCapacity(capacity);
     }
 
     public void setPrice(double price){
-        originator.setPrice(price);
         history.add(originator.save());
+        originator.setPrice(price);
     }
 
     public void setDescription(String description){
-        originator.setDescription(description);
         history.add(originator.save());
+        originator.setDescription(description);
     }
 
     public void setImageUrl(String imageUrl){
-        originator.setImageUrl(imageUrl);
         history.add(originator.save());
+        originator.setImageUrl(imageUrl);
     }
 
     public void undo(){
