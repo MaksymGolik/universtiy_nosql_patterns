@@ -15,7 +15,7 @@ public class RoomNotificationService {
         List<Guest> guests;
         this.dao = dao;
         try {
-            guests = dao.getUserDao().getUsers().stream()
+            guests = this.dao.getUserDao().getUsers().stream()
                     .filter(user -> user.getRole().getName().equals(Subscribers.subscribersRole))
                     .map(Guest::new).collect(Collectors.toList());
         } catch (DataNotFoundException dnfe){

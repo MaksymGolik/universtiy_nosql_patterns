@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Objects;
 
 public class User {
-    //@SerializedName("_id")
+    @SerializedName("_id")
     private Long id;
     @SerializedName("email")
     private String email;

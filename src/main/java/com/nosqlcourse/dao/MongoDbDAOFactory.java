@@ -68,6 +68,4 @@ public class MongoDbDAOFactory extends DAOFactory{
     public IAggregationDAO getAggregationDAO(){
         return new MongoDbAggregationDAOImpl();
     }
-
-
 }

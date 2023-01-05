@@ -105,7 +105,7 @@ public class MongoDbUserDAOImpl implements IUserDAO {
     public boolean updateUser(User user) {
         Bson update = Updates.combine(Updates.set("email", user.getEmail()),
                 Updates.set("password", user.getPassword()), Updates.set("name", user.getName()),
-                Updates.set("role", user.getRole().getName()));
+                Updates.set("role", user.getRole()));
         try(MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase mongoDatabase = mongoClient.getDatabase("nosqlcourse");
             UpdateResult updateResult = mongoDatabase.getCollection("users").updateOne(new BasicDBObject("_id", user.getId()),update);
