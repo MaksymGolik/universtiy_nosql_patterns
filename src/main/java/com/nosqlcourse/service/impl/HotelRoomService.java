@@ -3,10 +3,10 @@ package com.nosqlcourse.service.impl;
 import com.nosqlcourse.dao.DAOFactory;
 import com.nosqlcourse.dao.IHotelRoomDAO;
 import com.nosqlcourse.dao.TypeDAO;
-import com.nosqlcourse.exception.DataNotFoundException;
 import com.nosqlcourse.model.HotelRoom;
 import com.nosqlcourse.model.RoomInfo;
 import com.nosqlcourse.model.RoomType;
+import com.nosqlcourse.observer.RoomNotificationService;
 import com.nosqlcourse.service.IHotelRoomService;
 
 import java.sql.Date;
@@ -15,6 +15,7 @@ import java.util.List;
 public class HotelRoomService implements IHotelRoomService {
 
     private final IHotelRoomDAO dao = DAOFactory.getDAOInstance(TypeDAO.MONGO).getHotelRoomDAO();
+    private final RoomNotificationService roomNotificationService = new RoomNotificationService(DAOFactory.getDAOInstance(TypeDAO.MONGO));
 
     @Override
     public List<HotelRoom> getAllRooms(){
@@ -63,11 +64,14 @@ public class HotelRoomService implements IHotelRoomService {
 
     @Override
     public Long insertRoomType(RoomType roomType) {
+        roomNotificationService.notify("in hotel appears new room type ["+roomType.getDescription()+"]");
         return dao.insertRoomType(roomType);
     }
 
     @Override
     public Long insertRoomInfo(RoomInfo roomInfo) {
+        roomNotificationService.notify("in hotel appears new room category ["+
+                roomInfo.getType().getDescription()+' '+roomInfo.getCapacity()+"]");
         return dao.insertRoomInfo(roomInfo);
     }
 
