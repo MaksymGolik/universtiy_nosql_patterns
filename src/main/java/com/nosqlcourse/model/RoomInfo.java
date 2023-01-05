@@ -1,6 +1,7 @@
 package com.nosqlcourse.model;
 
 import com.google.gson.annotations.SerializedName;
+import com.nosqlcourse.model.memento.RoomInfoMemento;
 
 import java.util.Objects;
 
@@ -78,5 +79,18 @@ public class RoomInfo {
     @Override
     public int hashCode() {
         return Objects.hash(type, capacity, price, description, imageUrl);
+    }
+
+    public RoomInfoMemento save(){
+        return new RoomInfoMemento(id,type,capacity,price,description,imageUrl);
+    }
+
+    public void restore(RoomInfoMemento memento){
+        this.id = memento.getId();
+        this.type = memento.getType();
+        this.capacity = memento.getCapacity();
+        this.price = memento.getPrice();
+        this.description = memento.getDescription();
+        this.imageUrl = memento.getImageUrl();
     }
 }
