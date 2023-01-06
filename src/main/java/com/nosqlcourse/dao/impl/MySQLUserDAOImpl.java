@@ -22,7 +22,7 @@ public class MySQLUserDAOImpl implements IUserDAO {
     private static final String GET_USERS = "SELECT * FROM user JOIN user_role ON role_id=user_role.id";
     private static final String GET_USERS_BY_NAME = "SELECT * FROM user JOIN user_role ON role_id=user_role.id WHERE user.name=?";
     private static final String GET_USER_BY_EMAIL = "SELECT * FROM user JOIN user_role ON user.role_id=user_role.id WHERE email = ?";
-    private static final String GET_USER_BY_ID = "SELECT * FROM user JOIN user_role ON user.role_id=user_role.id WHERE id = ?";
+    private static final String GET_USER_BY_ID = "SELECT * FROM user JOIN user_role ON user.role_id=user_role.id WHERE user.id = ?";
     private static final String INSERT_USER = "INSERT INTO user(role_id,email,password,name) VALUES (?,?,?,?)";
     private static final String UPDATE_USER = "UPDATE user SET email = ?, password = ?, name = ?, role_id = ? WHERE id = ?;";
     private static final String GET_ROLE_ID_BY_ROLE_NAME = "SELECT id FROM user_role WHERE name=?";
@@ -151,7 +151,7 @@ public class MySQLUserDAOImpl implements IUserDAO {
             preparedStatement.setString(1,user.getEmail());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getName());
-            preparedStatement.setLong(4, user.getRole().getId());
+            preparedStatement.setLong(4, getRoleIdByRoleName(user.getRole().getName(),connection));
             preparedStatement.setLong(5, user.getId());
             affectedRows = preparedStatement.executeUpdate();
         } catch (SQLException ex){

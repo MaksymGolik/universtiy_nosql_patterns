@@ -11,7 +11,7 @@ import java.util.List;
 
 public class UserService implements IUserService {
 
-    private final IUserDAO dao = DAOFactory.getDAOInstance(TypeDAO.MONGO).getUserDao();
+    private final IUserDAO dao = DAOFactory.getDAOInstance(TypeDAO.MYSQL).getUserDao();
 
     @Override
     public List<User> getUsers(){

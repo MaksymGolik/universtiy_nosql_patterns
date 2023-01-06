@@ -1,7 +1,6 @@
 package com.nosqlcourse.service.impl.proxy;
 
 import com.nosqlcourse.exception.AccessDeniedException;
-import com.nosqlcourse.exception.DataNotFoundException;
 import com.nosqlcourse.model.HotelRoom;
 import com.nosqlcourse.model.RoomInfo;
 import com.nosqlcourse.model.RoomType;

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class BookingService implements IBookingService {
 
-    private final IBookingDAO dao = DAOFactory.getDAOInstance(TypeDAO.MONGO).getBookingDAO();
+    private final IBookingDAO dao = DAOFactory.getDAOInstance(TypeDAO.MYSQL).getBookingDAO();
 
     @Override
     public Long createBooking(Booking booking, List<BookingItem> bookingItems) {

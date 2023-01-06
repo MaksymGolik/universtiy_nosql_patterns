@@ -14,8 +14,8 @@ import java.util.List;
 
 public class HotelRoomService implements IHotelRoomService {
 
-    private final IHotelRoomDAO dao = DAOFactory.getDAOInstance(TypeDAO.MONGO).getHotelRoomDAO();
-    private final RoomNotificationService roomNotificationService = new RoomNotificationService(DAOFactory.getDAOInstance(TypeDAO.MONGO));
+    private final IHotelRoomDAO dao = DAOFactory.getDAOInstance(TypeDAO.MYSQL).getHotelRoomDAO();
+    private final RoomNotificationService roomNotificationService = new RoomNotificationService(DAOFactory.getDAOInstance(TypeDAO.MYSQL));
 
     @Override
     public List<HotelRoom> getAllRooms(){

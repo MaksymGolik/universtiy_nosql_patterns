@@ -11,11 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class NoSqlCourseApplicationTests {
-
-
-
-	private final DAOFactory dao = DAOFactory.getDAOInstance(TypeDAO.MONGO);
-
+	private final DAOFactory dao = DAOFactory.getDAOInstance(TypeDAO.MYSQL);
 	@Test
 	void mementoTest() throws DataNotFoundException {
 		RoomInfo roomInfo = dao.getHotelRoomDAO()
@@ -28,5 +24,4 @@ class NoSqlCourseApplicationTests {
 		editor.undo();
 		Assertions.assertEquals(expected,roomInfo);
 	}
-
 }
